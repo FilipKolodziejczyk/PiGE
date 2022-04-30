@@ -1,0 +1,124 @@
+:root {
+    --positon-in-respect-to-viewport: 5px;
+    --table-width: 220px;
+    --table-name-height: 2em;
+    --table-row-heigth: 1.3em;
+    --border-width: 1px;
+
+    --total-table-width: calc(var(--table-width) + var(--border-width) + var(--positon-in-respect-to-viewport));
+    --grade-table-top: calc(50vh - (var(--table-name-height) + var(--table-row-heigth) * 4) / 2);
+    --distance-between-tables: calc(100vw - var(--total-table-width) * 2);
+    --horizontal-line-width: calc(var(--distance-between-tables) / 2);
+     
+    --course-line-top: calc(var(--table-name-height) + 2 * var(--table-row-heigth) + var(--positon-in-respect-to-viewport));
+    --student-line-bottom: calc(4 * var(--table-row-heigth) + var(--positon-in-respect-to-viewport));
+}
+
+.db-table-div {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-color: black;
+    border-style: solid;
+    border-width: var(--border-width);
+    margin: 0;
+    text-align: left;
+    width: fit-content;
+    display: inline-block;
+}
+
+.db-table-name {
+    font-weight: bold;
+    text-decoration: underline;
+    text-align: center;
+    font-family: 'Corbel', serif;
+    margin: 0;
+    line-height: var(--table-name-height)
+}
+
+.db-table {
+    font-family: 'Consolas', monospace;
+    border-spacing: 0;
+    width: var(--table-width);
+    line-height: var(--table-row-heigth);
+}
+
+.db-table th {
+    font-weight: bold;
+    padding-right: 1em;
+}
+
+.db-table td {
+    height: var(--table-row-heigth);
+    padding-right: 1em;
+}
+
+.db-table-row-odd {
+    background-color: lightgray;
+}
+
+#course-table {
+    position: absolute;
+    top: var(--positon-in-respect-to-viewport);
+    left: var(--positon-in-respect-to-viewport);
+}
+
+#grade-table {
+    position: absolute;
+    top: var(--grade-table-top);
+    right: var(--positon-in-respect-to-viewport);
+}
+
+#student-table {
+    position: absolute;
+    bottom: var(--positon-in-respect-to-viewport);
+    left: var(--positon-in-respect-to-viewport);
+}
+
+.vertical-line {
+    width: 1px;
+    background-color: black;
+}
+
+.horizontal-line {
+    height: 1px;
+    width: var(--horizontal-line-width);
+    background-color: black;
+}
+
+#course-line {
+    position: absolute;
+    top: var(--course-line-top);
+    left: var(--total-table-width);
+}
+
+#course-grade-line {
+    position: absolute;
+    height: calc(var(--grade-table-top) - var(--course-line-top) + var(--table-name-height) + 2 * var(--table-row-heigth));
+    top: var(--course-line-top);
+    left: calc(var(--total-table-width) + var(--horizontal-line-width));
+}
+
+#grade-top-line {
+    position: absolute;
+    top: calc(var(--grade-table-top) + var(--table-name-height) + var(--table-row-heigth) * 2);
+    right: var(--total-table-width);
+}
+
+#grade-bottom-line {
+    position: absolute;
+    top: calc(var(--grade-table-top) + var(--table-name-height) + var(--table-row-heigth) * 3);
+    right: var(--total-table-width);
+}
+
+#grade-student-line {
+    position: absolute;
+    height: calc(100vh - var(--student-line-bottom) - (var(--grade-table-top) + var(--table-name-height) + var(--table-row-heigth) * 3));
+    bottom: var(--student-line-bottom);
+    left: calc(var(--total-table-width) + var(--horizontal-line-width));
+}
+
+#student-line {
+    position: absolute;
+    bottom: var(--student-line-bottom);
+    left: var(--total-table-width);
+}
