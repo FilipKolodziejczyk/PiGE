@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="icons\**" />
+    <EmbeddedResource Remove="icons\**" />
+    <None Remove="icons\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="icons\ellipse.bmp" />
+    <None Include="icons\flag_gb.bmp" />
+    <None Include="icons\flag_pl.bmp" />
+    <None Include="icons\load.bmp" />
+    <None Include="icons\rect.bmp" />
+    <None Include="icons\save.bmp" />
+    <None Include="icons\trash.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

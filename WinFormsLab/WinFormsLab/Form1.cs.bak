@@ -1,0 +1,84 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WinFormsLab
+{
+    public partial class Form1 : Form
+    {
+        private bool drawing = false;
+        private Color brushColor = Color.Black;
+        private float brushSize = 1;
+        private Point previousPoint;
+        private int colorButtonSize = 25;
+
+        public Form1()
+        {
+            InitializeComponent();
+
+            foreach (string colorStr in Enum.GetNames(typeof(KnownColor)))
+            {
+                KnownColor color = (KnownColor)Enum.Parse(typeof(KnownColor), colorStr);
+
+                Button button = new Button
+                {
+                    BackColor = Color.FromKnownColor(color),
+                    Name = $"button_{color}",
+                    Width = colorButtonSize,
+                    Height = colorButtonSize
+                };
+
+                button.Click += changeColor;
+                flowLayoutPanel1.Controls.Add(button);
+            }
+        }
+
+        private void changeColor(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            brushColor = button.BackColor;
+        }
+
+        private void toolStripBrush_Click(object sender, EventArgs e)
+        {
+            if (toolStripBrush.Checked == false)
+                toolStripBrush.Checked = true;
+            else
+                toolStripBrush.Checked = false;
+        }
+
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (toolStripBrush.Checked == true)
+            {
+                previousPoint = new Point(e.X, e.Y);
+                drawing = true;
+            }
+        }
+
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            drawing = false;
+            pictureBox1.BackColor = Color.White;
+        }
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (drawing && e.Button == MouseButtons.Left)
+            {
+                using (Pen p = new Pen(brushColor, brushSize))
+                {
+                    Graphics g = pictureBox1.CreateGraphics();
+                    g.DrawLine(p, previousPoint, e.Location);
+                    previousPoint = e.Location;
+                }
+            }
+        }
+    }
+}
