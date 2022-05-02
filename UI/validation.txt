@@ -1,0 +1,12 @@
+1. Job Title - Select List (choose from already available)
+2. Job Description - Text Box
+3. Department Name - Select List
+4. Number of available positions - integer field with arrows
+5. Salary - From
+6. Salary - To
+Check if salary from is less than salary too
+7. Start Date - Calendar View
+8. Ability to attach promotion graphic files - Drag and Drop, then management of attached files
+9. Contact - Email - check if email, check if domain is from company
+10. Contact - Phone Number - should be filled automatically acording to email, but possible to change, check if proper format, with country code
+11. Contact - Office working hours - time fields for start and end, also check for which days
